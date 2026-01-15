@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | PORTFORT</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific styles for login page */
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 10%, #131a16 0%, #0a0f0d 100%);
+        }
+
+        .login-card {
+            width: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .character-container {
+            width: 120px;
+            height: 120px;
+            background: #eee;
+            border-radius: 50%;
+            margin: -80px auto 20px;
+            /* Pull it up out of the card */
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Simple CSS representation of a face */
+        .face {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            position: relative;
+            border-radius: 50%;
+        }
+
+        .eyes-container {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        .eye {
+            width: 24px;
+            height: 24px;
+            background: #333;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pupil {
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            transition: transform 0.1s;
+        }
+
+        .hands-container {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 60px;
+            transition: bottom 0.3s ease;
+        }
+
+        .hand {
+            width: 40px;
+            height: 50px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            border: 2px solid #ddd;
+        }
+
+        .hands-container.covering {
+            bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--color-primary-start);
+        }
+
+        .social-login {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-btn.google:hover {
+            background: #DB4437;
+        }
+
+        .social-btn.fb:hover {
+            background: #4267B2;
+        }
+
+        .social-btn.linkedin:hover {
+            background: #0077b5;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: var(--color-text-muted);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="back-link">← Back</a>
+
+    <div class="login-card">
+        <div class="character-container">
+            <div class="face" id="face">
+                <div class="eyes-container">
+                    <div class="eye">
+                        <div class="pupil"></div>
+                    </div>
+                    <div class="eye">
+                        <div class="pupil"></div>
+                    </div>
+                </div>
+                <div class="hands-container" id="hands">
+                    <div class="hand"></div>
+                    <div class="hand"></div>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-bottom: 2rem;">Welcome Back</h2>
+
+        <form>
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" placeholder="you@example.com">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+            <button type="button" class="btn btn-primary" style="width: 100%;">Sign In</button>
+        </form>
+
+        <p style="margin: 1.5rem 0 0.5rem; font-size: 0.875rem; color: #888;">Or continue with</p>
+        <div class="social-login">
+            <div class="social-btn google" title="Google">G</div>
+            <div class="social-btn fb" title="Facebook">f</div>
+            <div class="social-btn linkedin" title="LinkedIn">in</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
